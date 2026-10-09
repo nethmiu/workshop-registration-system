@@ -27,7 +27,7 @@ const Sidebar = () => {
   const handleLogout = () => {
     logout();
     addToast('You have been logged out successfully', 'info');
-    navigate('/login');
+    navigate('/login', { replace: true, state: null });
   };
 
   if (!isAuthenticated) {

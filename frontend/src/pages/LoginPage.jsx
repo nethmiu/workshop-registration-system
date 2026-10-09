@@ -36,9 +36,22 @@ const LoginPage = () => {
       const user = await login(email, password);
       addToast(`Welcome back, ${user.name}! Logged in as ${user.role}.`, 'success');
       
-      const defaultTarget = user.role === 'admin' ? '/users' : '/workshops';
-      const target = location.state?.from?.pathname || defaultTarget;
-      navigate(target, { replace: true });
+      const roleHome = user.role === 'admin' ? '/users' : '/workshops';
+      let target = roleHome;
+      const requestedPath = location.state?.from?.pathname;
+
+      if (requestedPath && requestedPath !== '/unauthorized' && requestedPath !== '/login') {
+        if (user.role === 'admin' && requestedPath.startsWith('/users')) {
+          target = requestedPath;
+        } else if (
+          (user.role === 'manager' || user.role === 'staff') &&
+          (requestedPath.startsWith('/workshops') || requestedPath.startsWith('/registrations'))
+        ) {
+          target = requestedPath;
+        }
+      }
+
+      navigate(target, { replace: true, state: null });
     } catch (error) {
       const msg = error.response?.data?.message || 'Login failed. Please verify credentials.';
       setErrorMessage(msg);
