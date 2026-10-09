@@ -197,8 +197,8 @@ npm start
 
 ## 📄 Design Document & Architectural Decisions
 
-For the complete 1-page written technical document detailing architectural choices, trade-offs, assumptions, and race condition prevention, please refer to:
-👉 **[DESIGN_DOCUMENT.md](file:///e:/workshop-registration-system/DESIGN_DOCUMENT.md)**
+For the complete written technical document detailing architectural choices, trade-offs, assumptions, and race condition prevention, please refer to:
+👉 **[DESIGN_DOCUMENT.md](FullStack_Workshop_Architecture_Overview.pdf)**
 
 ---
 
